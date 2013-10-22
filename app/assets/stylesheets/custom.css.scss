@@ -122,7 +122,6 @@ footer {
   @include box_sizing;
 }
 
-
 /* sidebar */
 
 aside {
@@ -145,6 +144,20 @@ aside {
       margin-bottom: 3px;
       margin-top: 0px;
     }
+
+    .span8{
+      width: 280px;
+      .teams {
+        list-style: none;
+        margin: 0;
+        li {
+          overflow: auto;
+          padding: 5px 0;
+          border:0
+          
+        }
+      }
+    }
   }
 }
 
@@ -152,7 +165,6 @@ aside {
   float: left;
   margin-right: 10px;
 }
-
 
 /* forms */
 
@@ -167,6 +179,10 @@ input {
   height: auto !important;
 }
 
+.dob {
+  width:30px
+}
+
 #error_explanation {
   color: #f00;
   ul {
@@ -179,8 +195,6 @@ input {
   @extend .control-group;
   @extend .error;
 }
-
-
 
 /* Users index */
 
@@ -197,40 +211,11 @@ input {
   }
 }
 
-.stats {
-  overflow: auto;
-  a {
-    float: left;
-    padding: 0 10px;
-    border-left: 1px solid $grayLighter;
-    color: gray;
-    &:first-child {
-      padding-left: 0;
-      border: 0;
-    }
-    &:hover {
-      text-decoration: none;
-      color: $blue;
-    }
-  }
-  strong {
-    display: block;
-  }
-}
-
-.user_avatars {
-  overflow: auto;
-  margin-top: 10px;
-  .gravatar {
-    margin: 1px 1px;
-  }
-}
-
-
 /* TEams index */
 
 .teams {
   list-style: none;
+  padding-top: 40px;
   margin: 0;
   li {
     overflow: auto;
@@ -252,4 +237,11 @@ input {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
   }
+}
+
+.new-team { 
+    float: right;
+    height: 20px;
+    padding-right: 20px;
+    position: relative;
 }

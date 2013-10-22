@@ -1,5 +1,8 @@
 <% provide(:title, 'All Teams') %>
 <h1>All Teams</h1>
+<div class="new-team">
+<%= link_to "Create New Team", new_team_path %>
+</div>
 <%= will_paginate %>
 <ul class="teams">
   <% @teams.each do |team| %>
