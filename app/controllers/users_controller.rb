@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @teams = @user.joined_teams.paginate(page: params[:page])
   end
 
   def new
@@ -19,7 +20,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       sign_in @user
-      flash[:success] = "Welcome to Blog System!"
+      flash[:success] = "Welcome to Member Management System!"
       redirect_to @user
       # Handle a successful save.
     else
@@ -51,7 +52,7 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
+                                   :password_confirmation, :birthday)
     end
 
     def signed_in_user

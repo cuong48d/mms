@@ -3,9 +3,42 @@
   <aside class="span4">
     <section>
       <h1>
-        <%= gravatar_for @user %>
+        <%= gravatar_for @user, size: 50 %>
         <%= @user.name %>
+
       </h1>
+       <span>Birthday: <%= @user.birthday.strftime("%m/%d/%Y") %></span>
+        <span>Age: <%=@user.age(@user.birthday) %></span>
+    </section>
+    <section>
+        <div class="span4">
+    <% if @user.teams.any? %>
+      <h3>Owned Teams (<%= @user.teams.count %>)</h3>
+      <ol class="teams">
+        <% @user.teams.each do |team| %>
+                 <li>
+                 <%= link_to team.name, team %>
+                 (<%= team.members.count %> members)
+                 </li>
+                 <% end %>
+      </ol>
+    <% end %>
+  </div>
     </section>
   </aside>
+
+ <div class="span8">
+    <% if @user.joined_teams.any? %>
+      <h3>Joined Teams (<%= @user.joined_teams.count %>)</h3>
+      <ol class="teams">
+        <% @teams.each do |team| %>
+                 <li>
+                 <%= link_to team.team.name, team.team %>
+                 (<%= team.team.members.count %> members)
+                 </li>
+                 <% end %>
+      </ol>
+      <%= will_paginate @teams %>
+    <% end %>
+  </div>
 </div>

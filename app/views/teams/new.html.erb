@@ -1,0 +1,15 @@
+
+<% provide(:title, 'Create New Team') %>
+<h1>Create new team</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@team) do |f| %>
+      <%= render 'shared/team_error_messages', object: f.object %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      <%= f.hidden_field :owner_id, :value => @team.owner_id %>
+      <%= f.submit "Create new team", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
