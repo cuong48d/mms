@@ -1,5 +1,7 @@
 MyApp::Application.routes.draw do
   resources :users
+  resources :teams
+  resources :team_members, only: [:create, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
 
   root  'static_pages#home'

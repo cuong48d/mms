@@ -1,0 +1,25 @@
+
+<% provide(:title, @team.name) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= @team.name %>
+      </h1>
+      <span>
+        Owner: <%= link_to @team.owner.name, @team.owner %>
+      </span>
+    </section>
+  </aside>
+   <div class="span8">
+
+    <%= render 'join_form' if signed_in? %>
+    <% if @team.members.any? %>
+      <h3>Members (<%= @team.members.count %>)</h3>
+      <ol class="members">
+        <%= render partial: 'teams/member', collection: @members %>
+      </ol>
+      <%= will_paginate @members %>
+    <% end %>
+  </div>
+</div>

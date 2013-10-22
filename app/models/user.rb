@@ -1,10 +1,14 @@
 class User < ActiveRecord::Base
+  has_many :teams, foreign_key: "owner_id", dependent: :destroy
+  has_many :joined_teams, class_name:"TeamMember", dependent: :destroy
+
   before_save { self.email = email.downcase }
   before_create :create_remember_token
   validates :name,  presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
+  validates :birthday, presence: true
   has_secure_password
   validates :password, length: { minimum: 6 }
 
@@ -14,6 +18,11 @@ class User < ActiveRecord::Base
 
   def User.encrypt(token)
     Digest::SHA1.hexdigest(token.to_s)
+  end
+  
+  def age(dob)
+    now = Time.now.utc.to_date
+    now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
   end
 
   private

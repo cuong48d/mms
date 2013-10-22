@@ -1,0 +1,10 @@
+<% provide(:title, @title) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1><%= @team.name %></h1>
+      <span><%= link_to "view my profile", @user %></span>
+      <span><b>Members:</b> <%= debug(@team) %></span>
+    </section>
+</aside>
+</div>

@@ -11,6 +11,10 @@
 
       <%= f.label :email %>
       <%= f.text_field :email %>
+      
+      <%= f.label :birthday, "Birthday" %>
+      <%= f.date_select :birthday,:start_year => 1940 %>
+
 
       <%= f.label :password %>
       <%= f.password_field :password %>

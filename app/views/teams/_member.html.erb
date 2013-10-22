@@ -1,0 +1,15 @@
+<li>
+      <%= gravatar_for member.user, size: 40 %>
+      <%= link_to member.user.name, member.user %>
+
+      (Age <%= member.user.age(member.user.birthday)%>)
+
+      <% if current_user?(member.team.owner) && !current_user?(member.user)%>
+
+              
+         <%= link_to "Kick", member, method: :delete,
+         data: { confirm: "You sure?" },
+         title: "Kick" %>
+
+         <% end %>
+    </li>
